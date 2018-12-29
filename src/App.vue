@@ -1,6 +1,7 @@
 <template>
-  <div id="app" class="container mt-3">
-    <router-view></router-view>
+  <div id="app">
+    <router-view/>
+    <div class="test"></div>
   </div>
 </template>
 
@@ -25,14 +26,19 @@
   color: #42b983;
 }*/
 html, body {
-  height: 100%;
+  min-height: 100vh;
   margin: 0;
   background-color: beige;
 }
 
 #app {
-  min-height: 100%;
-  /*background-color: beige;*/
+  height: 100vh;
   text-align: center;
+  background-color: yellow;
+}
+
+.test {
+  height: 50vh;
+  background-color: green;
 }
 </style>
