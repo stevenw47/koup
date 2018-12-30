@@ -24,6 +24,7 @@ export default new Router({
       path: '/:roomId',
       name: 'room',
       component: Room,
+      props: true,
     },
   ],
 });

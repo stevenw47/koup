@@ -22,15 +22,23 @@ export default {
   },
   methods: {
     createGame() {
-      const newRoomId = 'newRoomId';
-      this.$router.push({ name: 'room', params: { roomId: newRoomId } });
+      // TODO: call api to create room, and retrieve the generated roomId
+      // code to get a new room id
+      this.roomId =  'newRoomId';
+      this.joinGame();
     },
     joinGame() {
-      //alert(this.gameId.length == 0 ? "no game id" : this.gameId);
+      // TODO: call api to join room with specified roomId; if can join, redirect; else, warn user no room/already started
       if(this.roomId.length != 0) {
-        this.$router.push({ name: 'room', params: { roomId: this.roomId } });
+        // check if room is joinable. if yes, redirect to new url. otherwise, warn user
+        var canJoin = true;
+        if(canJoin) {
+          this.$router.push({ name: 'room', params: { roomId: this.roomId } });
+        } else {
+          alert("room not joinable");
+        }
       } else {
-        alert('no room id');
+        alert("no room id");
       }
     },
   },

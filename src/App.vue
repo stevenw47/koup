@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <div class="test"></div>
+    <!-- <div class="test"></div> -->
   </div>
 </template>
 
@@ -37,8 +37,8 @@ html, body {
   background-color: yellow;
 }
 
-.test {
+/*.test {
   height: 50vh;
   background-color: green;
-}
+}*/
 </style>
