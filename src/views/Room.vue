@@ -1,7 +1,6 @@
 <template>
   <div class="room">
-    This is a room with id {{ roomId }}.
-    <component v-bind:is="currentRoomComponent" v-bind:roomId="roomId" v-bind:userId="userId"></component>
+    <component v-bind:is="currentRoomComponent" v-bind:roomId="roomId" v-bind:userId="userId" v-on:change-room-component="changeRoomComponent"></component>
   </div>
 </template>
 
@@ -20,7 +19,7 @@ export default {
     return {
       currentRoomComponent: '',
       userId: '',
-    }
+    };
   },
   created: function () {
     this.setup();
@@ -35,13 +34,16 @@ export default {
     setup() {
       // TODO: call api with roomId
       // call api to join room, returns userId
-      canJoin = true;
-      if(canJoin) {
+      var canJoin = true;
+      if (canJoin) {
         this.userId = 'newUserId';
         this.currentRoomComponent = 'RoomLobby';
       } else {
         this.$router.push('home');
       }
+    },
+    changeRoomComponent(newRoomComponent) {
+      this.currentRoomComponent = newRoomComponent;
     },
   },
 };  

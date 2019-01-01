@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       roomId: '',
-    }
+    };
   },
   methods: {
     createGame() {
@@ -29,10 +29,10 @@ export default {
     },
     joinGame() {
       // TODO: call api to join room with specified roomId; if can join, redirect; else, warn user no room/already started
-      if(this.roomId.length != 0) {
+      if (this.roomId.length != 0) {
         // check if room is joinable. if yes, redirect to new url. otherwise, warn user
         var canJoin = true;
-        if(canJoin) {
+        if (canJoin) {
           this.$router.push({ name: 'room', params: { roomId: this.roomId } });
         } else {
           alert("room not joinable");
