@@ -136,28 +136,22 @@ export default {
     getSelectedCards() {
       return this.cards.filter(card => { return card.selected; });
     },
-    doToall(field, value) {
-
+    doToAll(field, value) {
+      for (var i = 0; i < this.cards.length; ++i) {
+        this.cards[i][field] = value;
+      }
     },
     unhideAll() {
-      for (var i = 0; i < this.cards.length; ++i) {
-        this.cards[i].hidden = false;
-      }
+      this.doToAll('hidden', false);
     },
     hideAll() {
-      for (var i = 0; i < this.cards.length; ++i) {
-        this.cards[i].hidden = true;
-      }
+      this.doToAll('hidden', true);
     },
     unselectAll() {
-      for (var i = 0; i < this.cards.length; ++i) {
-        this.cards[i].selected = false;
-      }
+      this.doToAll('selected', false);
     },
     ownAll() {
-      for (var i = 0; i < this.cards.length; ++i) {
-        this.cards[i].owned = true;
-      }
+      this.doToAll('owned', true);
     },
     clickedCard(cardId) {
       // FIXME: use something like enum for cardsMode?
@@ -184,26 +178,6 @@ export default {
         if (this.currentlySelectedAmount < this.selectedCap) {
           card.selected = true;
         }
-      // } else if (this.cardsMode == 'kill' || this.cardsMode == 'reveal') {
-
-      //   // if selected, unselect it
-      //   if (card.selected) {
-      //     card.selected = false;
-      //     return;
-      //   }
-      //   // can't select dead card
-      //   if (!card.alive) return;
-
-      //   if (this.currentlySelectedAmount < this.selectedCap) {
-      //     card.selected = true;
-      //   } else {
-      //     // unselect all
-      //     this.unselectAll();
-      //     // select card
-      //     card.selected = true;
-      //   }
-      // } else if (this.cardsMode == 'reveal') {
-      //   // FIXME: don't need this one?
       } else {
         alert("An error has occurred.");
       }
