@@ -110,27 +110,45 @@ export default {
             this.unselectAll();
             this.hideAll();
             this.ownAll();
+            this.cardsMode = 'display';
           }
         } else if (this.cardsMode == 'kill') {
-          var selectedCards = this.getSelectedCards();
-          // FIXME: wrap into kill function?
-          selectedCards[0].alive = false;
-          selectedCards[0].hidden = false;
-          this.unselectAll();
-          this.hideAll();
+          if (this.currentlySelectedAmount == 0) {
+            this.cardsMode = 'display';
+            this.hideAll();
+          } else {
+            if (this.currentlySelectedAmount == this.selectedCap) {
+              var selectedCards = this.getSelectedCards();
+              // FIXME: wrap into kill function?
+              for (var i = 0; i < selectedCards.length; ++i) {
+                selectedCards[i].alive = false;
+                selectedCards[i].hidden = false;
+              }
+              this.unselectAll();
+              this.hideAll();
+              this.cardsMode = 'display';
+            }
+          }
         } else if (this.cardsMode == 'reveal') {
-          var selectedCards = this.getSelectedCards();
-          // TODO: call api to get new card, then return old card
-          // also remove old card from array and put new card in its position
-          var cardIndex = this.cards.indexOf(selectedCards[0]);
-          var newCard = { id: 10, type: 'Duke', hidden: true, alive: true, selected: false };
-          this.cards.splice(cardIndex, 1, newCard);
-          this.unselectAll();
-          this.hideAll();
+          if (this.currentlySelectedAmount == 0) {
+            this.cardsMode = 'display';
+            this.hideAll();
+          } else {
+            if (this.currentlySelectedAmount == this.selectedCap) {
+              var selectedCards = this.getSelectedCards();
+              // TODO: call api to get new card, then return old card
+              // also remove old card from array and put new card in its position
+              var cardIndex = this.cards.indexOf(selectedCards[0]);
+              var newCard = { id: 10, type: 'Duke', hidden: true, alive: true, selected: false };
+              this.cards.splice(cardIndex, 1, newCard);
+              this.unselectAll();
+              this.hideAll();
+              this.cardsMode = 'display';
+            }
+          }
         } else {
           alert("An error has occurred.");
         }
-        this.cardsMode = 'display';
       }
     },
     getSelectedCards() {
