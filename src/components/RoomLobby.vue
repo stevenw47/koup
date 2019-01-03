@@ -48,7 +48,7 @@ export default {
   data: function () {
     return {
       roomIdInt: Number.isInteger(this.roomId) ? this.roomId : parseInt(this.roomId, 10),
-      numOfPlayers: 0,
+      numOfPlayers: null,
       roomState: 1, // 1 is lobby
     };
   },

@@ -13,7 +13,7 @@
     <template v-else>
       <div class="join-container">
         <div class="item">
-          <input class="join-input" type="number" v-model="roomId" v-on:keyup.enter="joinGame" autofocus>
+          <input class="join-input" type="number" placeholder="Game ID" v-model="roomId" v-on:keyup.enter="joinGame" autofocus>
         </div>
         <div class="item">
           <button class="menu-btn" v-on:click="joinGame">Join</button>
