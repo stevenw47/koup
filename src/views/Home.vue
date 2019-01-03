@@ -38,7 +38,6 @@ export default {
 }
 
 .container {
-  background-color: #00131a;
   display: flex;
   flex-direction: column;
   justify-content: center;
