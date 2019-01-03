@@ -13,7 +13,7 @@
     <template v-else>
       <div class="join-container">
         <div class="item">
-          <input class="join-input" type="number" v-model="roomId" v-on:keyup.enter="joinGame">
+          <input class="join-input" type="number" v-model="roomId" v-on:keyup.enter="joinGame" autofocus>
         </div>
         <div class="item">
           <button class="menu-btn" v-on:click="joinGame">Join</button>
@@ -30,14 +30,13 @@ export default {
   // name: 'HomeMenu',
   data: function () {
     return {
-      roomId: '', // FIXME: should be an int
+      roomId: null,
       showJoinGameInput: false,
     };
   },
   methods: {
     createGame() {
       this.$apollo.mutate({
-        // Query
         mutation: gql`mutation ($input: CreateRoomInput!) {
           createRoom(input: $input) {
             room {
@@ -49,17 +48,14 @@ export default {
           input: {}, // empty input
         },
       }).then((res) => {
-        // Result
-        // TODO: better ui here
+        console.log(res);
         this.roomId = parseInt(res.data.createRoom.room.key, 10); // get roomId from data
         this.joinGame();
       }).catch((error) => {
-        // Error
+        // TODO: better ui here
         console.error(error);
         alert("An error has occurred.");
       });
-      // this.roomId = 'newRoomId';
-      // this.joinGame();
     },
     joinGame() {
       if (this.roomId.length != 0) {
