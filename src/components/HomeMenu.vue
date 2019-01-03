@@ -13,31 +13,66 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
+
 export default {
   // name: 'HomeMenu',
-  data() {
+  data: function () {
     return {
-      roomId: '',
+      roomId: '', // FIXME: should be an int
     };
   },
   methods: {
     createGame() {
-      // TODO: call api to create room, and retrieve the generated roomId
-      // code to get a new room id
-      this.roomId =  'newRoomId';
-      this.joinGame();
+      this.$apollo.mutate({
+        // Query
+        mutation: gql`mutation ($input: CreateRoomInput!) {
+          createRoom(input: $input) {
+            room {
+              key
+            }
+          }
+        }`,
+        variables: {
+          input: {}, // empty input
+        },
+      }).then((res) => {
+        // Result
+        // TODO: better ui here
+        this.roomId = parseInt(res.data.createRoom.room.key, 10); // get roomId from data
+        this.joinGame();
+      }).catch((error) => {
+        // Error
+        console.error(error);
+        alert("An error has occurred.");
+      });
+      // this.roomId = 'newRoomId';
+      // this.joinGame();
     },
     joinGame() {
-      // TODO: call api to join room with specified roomId; if can join, redirect; else, warn user no room/already started
       if (this.roomId.length != 0) {
-        // check if room is joinable. if yes, redirect to new url. otherwise, warn user
-        var canJoin = true;
-        if (canJoin) {
+        this.$apollo.mutate({
+          mutation: gql`mutation ($input: RoomActionInput!) {
+            joinChecker(input: $input) {
+              room {
+                key
+              }
+            }
+          }`,
+          variables: {
+            input: {
+              roomKey: this.roomId,
+            },
+          },
+        }).then((res) => {
           this.$router.push({ name: 'room', params: { roomId: this.roomId } });
-        } else {
-          alert("room not joinable");
-        }
+        }).catch((error) => {
+          // FIXME: nice ui for error (e.g. no such room or room is not in lobby or full capacity)
+          console.error(error);
+          alert("An error has occurred.");
+        });
       } else {
+        // FIXME: make a nice ui pop-up?
         alert("no room id");
       }
     },
@@ -45,7 +80,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .home-menu {
   margin-top: 1em;
