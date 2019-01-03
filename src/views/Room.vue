@@ -75,6 +75,8 @@ export default {
 };  
 </script>
 
-<style>
-
+<style scoped>
+.room {
+  height: 100vh;
+}
 </style>
