@@ -47,6 +47,7 @@ export default {
         }
       }`,
       manual: true,
+      skip: true,
       result(res) {
         var rawCardsMap = res.data.allCards.edges;
         for (let i = 0; i < rawCardsMap.length; ++i) {
@@ -128,6 +129,8 @@ export default {
     },
   },
   created: function () {
+    this.$apollo.queries.allCards.skip = false;
+    this.$apollo.queries.allCards.refetch();
     // TODO: get cards from api
     //this.cards.push({ id: 1, type: 'Contessa', hidden: true, alive: true, selected: false, owned: true });
     //this.cards.push({ id: 2, type: 'Assassin', hidden: true, alive: true, selected: false, owned: true });
