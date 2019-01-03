@@ -30,7 +30,7 @@ export default {
   // name: 'HomeMenu',
   data: function () {
     return {
-      roomId: null,
+      roomId: '',
       showJoinGameInput: false,
     };
   },
