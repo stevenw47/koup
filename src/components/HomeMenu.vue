@@ -132,6 +132,7 @@ export default {
   font-size: 20px;
   height: 2em;
   width: 16em;
+  border: 1.5px solid #BDBDBD;
   border-radius: 7px;
 }
 </style>
