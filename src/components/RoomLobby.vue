@@ -2,7 +2,7 @@
   <div class="room-lobby">
     <div class="item">
       <p>Game ID:</p>
-      <h4>{{ roomIdInt }}</h4>
+      <h4>{{ roomId }}</h4>
     </div>
     <div class="item">
       <p>Number of Players:</p>
@@ -35,7 +35,7 @@ export default {
       }`,
       variables() {
         return {
-          id: this.roomIdInt,
+          id: this.roomId,
         };
       },
       result(res) {
@@ -47,7 +47,6 @@ export default {
   },
   data: function () {
     return {
-      roomIdInt: Number.isInteger(this.roomId) ? this.roomId : parseInt(this.roomId, 10),
       numOfPlayers: null,
       roomState: 1, // 1 is lobby
     };
@@ -64,7 +63,7 @@ export default {
         }`,
         variables: {
           input: {
-            roomKey: this.roomIdInt,
+            roomKey: this.roomId,
           },
         },
       }).catch((error) => {

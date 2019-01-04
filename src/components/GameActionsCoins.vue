@@ -1,52 +1,28 @@
 <template>
   <div class="game-actions-coins">
-    <div class="row">
+    <div class="coin-action">
       <!-- TODO: add class (dynamic?) for disabled buttons -->
+      <h4>Coins: {{ coins }}</h4>
+    </div>
+    <div class="coin-action">
       <button
         v-for="amount in addCoinAmounts" :key="amount"
-        class="coin-button"
+        class=".coin-action-btn"
         v-on:click="addCoins(amount)"
         :disabled="!canAddCoins(amount)">
           +{{ amount }}
       </button>
     </div>
-    <div class="row">
-      Coins: {{ coins }}
-    </div>
-    <div class="row">
+    <div class="coin-action">
       <button
         v-for="amount in removeCoinAmounts" :key="amount"
-        class="coin-button"
+        class=".coin-action-btn"
         v-on:click="removeCoins(amount)"
         :disabled="!canRemoveCoins(amount)">
           -{{ amount }}
       </button>
     </div>
   </div>
-  <!-- <div class="game-actions-coins">
-    <div class="buttons-container">
-      TODO: add class (dynamic?) for disabled buttons
-      <button
-        v-for="amount in addCoinAmounts" :key="amount"
-        class="coin-button"
-        v-on:click="addCoins(amount)"
-        :disabled="!canAddCoins(amount)">
-          +{{ amount }}
-      </button>
-    </div>
-    <div class="coin-counter">
-      Coins: {{ coins }}
-    </div>
-    <div class="buttons-container">
-      <button
-        v-for="amount in removeCoinAmounts" :key="amount"
-        class="coin-button"
-        v-on:click="removeCoins(amount)"
-        :disabled="!canRemoveCoins(amount)">
-          -{{ amount }}
-      </button>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -88,41 +64,28 @@ export default {
 </script>
 
 <style scoped>
-/*.game-actions-coins, .buttons-container, {
-  display: flex;
-}
 .game-actions-coins {
   background-color: cyan;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.buttons-container {
-  flex: 1;
+
+.coin-action {
+  display: flex;
   justify-content: center;
 }
-.coin-counter {
-  flex: 1;
-}
-.coin-button {
+
+.coin-action-btn {
   margin: 0.75em;
 }
-button:disabled {
+
+.coin-action-btn:disabled {
   background-color: red;
-}*/
-.game-actions-coins {
-  background-color: cyan;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
-/*FIXME: more descriptive name?*/
-.row {
-  display: flex;
-  justify-content: center;
-  /*flex: 1;*/
-}
-.coin-button {
-  margin: 0.75em;
+
+h4 {
+  /*margin: 0;*/
 }
 /*TODO: don't use button*/
 button:disabled {
