@@ -1,11 +1,17 @@
 <template>
   <div class="home container">
-    <div class="item">
-      <h2 class="title">Koup</h2>
+    <div class="title-container">
+      <h1 class="title">Koup</h1>
+    </div>
+    <div class="menu-container">
+      <HomeMenu/>
+    </div>
+    <!-- <div class="item">
+      <h1 class="title">Koup</h1>
     </div>
     <div class="item">
       <HomeMenu/>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -23,24 +29,27 @@ export default {
 
 <style scoped>
 .home {
-  height: 50vh;
-  background-color: blue;
-  color: green;
+  height: 100vh;
 }
 
 .title {
+  font-size: 50px;
   margin: 0;
 }
 
 .container {
-  background-color: pink;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.item {
+.title-container, .menu-container {
   margin: 0.5em;
-  color: red;
+  display: flex;
+  justify-content: center;
 }
+
+/*.item {
+  margin: 0.5em;
+}*/
 </style>

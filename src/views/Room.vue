@@ -1,6 +1,12 @@
 <template>
   <div class="room">
-    <component v-bind:is="currentRoomComponent" v-bind:roomId="roomId" v-bind:userId="userId" v-on:change-room-component="changeRoomComponent"></component>
+    <component
+      v-if="currentRoomComponent != ''"
+      v-bind:is="currentRoomComponent"
+      v-bind:roomId="roomId"
+      v-bind:userId="userId"
+      v-on:change-room-component="changeRoomComponent"
+    />
   </div>
 </template>
 
@@ -27,7 +33,8 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      // react to route changes...
+      // react to route changes
+      this.currentRoomComponent == '';
       this.setup();
     }
   },
@@ -53,20 +60,8 @@ export default {
         // FIXME: nice ui here for error
         console.error(error);
         alert("An error has occurred.");
-        this.$router.push('home');
+        this.$router.push({ name: 'home' });
       });
-
-
-
-      // TODO: call api with roomId
-      // call api to join room, returns userId
-      // var canJoin = true;
-      // if (canJoin) {
-      //   this.userId = 'newUserId';
-      //   this.currentRoomComponent = 'RoomLobby';
-      // } else {
-      //   this.$router.push('home');
-      // }
     },
     changeRoomComponent(newRoomComponent) {
       this.currentRoomComponent = newRoomComponent;
@@ -75,6 +70,8 @@ export default {
 };  
 </script>
 
-<style>
-
+<style scoped>
+.room {
+  height: 100vh;
+}
 </style>

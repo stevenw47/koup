@@ -1,23 +1,19 @@
 <template>
   <div class="room-game">
-    <!-- TODO: delete this -->
-    <!-- Room Game with roomId {{ roomId }} and userId {{ userId }}. -->
-    <div class="row">
-      <div class="col">
-        <GameActions
-          v-bind:coins="coins"
-          v-bind:cardsMode="cardsMode"
-          v-on:set-coins="setCoins"
-          v-on:set-mode="setMode"
-        />
-      </div>
-      <div class="col">
-        <GameCards
-          v-bind:cards="cards"
-          v-bind:cardsMode="cardsMode"
-          v-on:clicked-card="clickedCard"
-        />
-      </div>
+    <div class="game-col">
+      <GameActions
+        v-bind:coins="coins"
+        v-bind:cardsMode="cardsMode"
+        v-on:set-coins="setCoins"
+        v-on:set-mode="setMode"
+      />
+    </div>
+    <div class="game-col">
+      <GameCards
+        v-bind:cards="cards"
+        v-bind:cardsMode="cardsMode"
+        v-on:clicked-card="clickedCard"
+      />
     </div>
   </div>
 </template>
@@ -47,6 +43,7 @@ export default {
         }
       }`,
       manual: true,
+      skip: true,
       result(res) {
         var rawCardsMap = res.data.allCards.edges;
         for (let i = 0; i < rawCardsMap.length; ++i) {
@@ -99,7 +96,7 @@ export default {
         }
       */
       cards: [], // array of cards
-      coins: 0,
+      coins: 2, // start with 2 coins
       // modes are one of ['display', 'swap', 'kill', 'reveal']
       cardsMode: 'display',
       cardsMap: {}, // map from card's dbId to type
@@ -128,6 +125,8 @@ export default {
     },
   },
   created: function () {
+    this.$apollo.queries.allCards.skip = false;
+    this.$apollo.queries.allCards.refetch();
     // TODO: get cards from api
     //this.cards.push({ id: 1, type: 'Contessa', hidden: true, alive: true, selected: false, owned: true });
     //this.cards.push({ id: 2, type: 'Assassin', hidden: true, alive: true, selected: false, owned: true });
@@ -398,10 +397,10 @@ export default {
 </script>
 
 <style scoped>
-.row {
+.room-game {
   display: flex;
 }
-.col {
+.game-col {
   flex: 1;
 }
 </style>

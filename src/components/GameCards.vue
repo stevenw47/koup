@@ -30,10 +30,9 @@ export default {
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .card {
-  background-color: pink;
   flex: 1 1 50%;
 }
 </style>

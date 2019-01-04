@@ -1,14 +1,25 @@
 <template>
-  <div class="home-menu container">
-    <div class="item">
-      <button v-on:click="createGame">Create Game</button>
-    </div>
-    <div class="item">
-      <input v-model="roomId">
-    </div>
-    <div class="item">
-      <button v-on:click="joinGame">Join Game</button>
-    </div>
+  <div class="home-menu">
+    <template v-if="!showJoinGameInput">
+      <div class="menu-container">
+        <div class="item">
+          <button class="menu-btn" v-on:click="createGame">Create Game</button>
+        </div>
+        <div class="item">
+          <button class="menu-btn" v-on:click="tryJoinGame">Join Game</button>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div class="join-container">
+        <div class="item">
+          <input class="join-input" placeholder="Game ID" v-model="roomId" v-on:keyup.enter="joinGame" autofocus>
+        </div>
+        <div class="item">
+          <button class="menu-btn" v-on:click="joinGame">Join</button>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -19,13 +30,13 @@ export default {
   // name: 'HomeMenu',
   data: function () {
     return {
-      roomId: '', // FIXME: should be an int
+      roomId: '',
+      showJoinGameInput: false,
     };
   },
   methods: {
     createGame() {
       this.$apollo.mutate({
-        // Query
         mutation: gql`mutation ($input: CreateRoomInput!) {
           createRoom(input: $input) {
             room {
@@ -37,17 +48,14 @@ export default {
           input: {}, // empty input
         },
       }).then((res) => {
-        // Result
-        // TODO: better ui here
-        this.roomId = parseInt(res.data.createRoom.room.key, 10); // get roomId from data
+        console.log(res);
+        this.roomId = res.data.createRoom.room.key; // get roomId from data
         this.joinGame();
       }).catch((error) => {
-        // Error
+        // TODO: better ui here
         console.error(error);
         alert("An error has occurred.");
       });
-      // this.roomId = 'newRoomId';
-      // this.joinGame();
     },
     joinGame() {
       if (this.roomId.length != 0) {
@@ -76,24 +84,51 @@ export default {
         alert("no room id");
       }
     },
+    tryJoinGame() {
+      this.showJoinGameInput = true;
+    },
   },
 };
 </script>
 
 <style scoped>
-.home-menu {
+/*.home-menu {
   margin-top: 1em;
+}*/
+
+.menu-container, .join-container {
+  display: flex;
+  justify-content: center;
 }
 
-.container {
-  background-color: pink;
-  display: flex;
+.menu-container {
+  flex-direction: row;
+}
+
+.join-container {
   flex-direction: column;
-  justify-content: center;
 }
 
 .item {
   margin: 0.5em;
-  color: red;
+}
+
+.menu-btn {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  height: 2em;
+  width: 9em;
+  background-color: #EEEEEE;
+  border: 1.5px solid #BDBDBD;
+  border-radius: 7px;
+}
+
+.join-input {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  height: 2em;
+  width: 16em;
+  border: 1.5px solid #BDBDBD;
+  border-radius: 7px;
 }
 </style>

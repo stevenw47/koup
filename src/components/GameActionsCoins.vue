@@ -1,52 +1,27 @@
 <template>
   <div class="game-actions-coins">
-    <div class="row">
-      <!-- TODO: add class (dynamic?) for disabled buttons -->
+    <div class="coin-action-text">
+      <h2>💰: {{ coins }}</h2>
+    </div>
+    <div class="coin-action-buttons">
       <button
         v-for="amount in addCoinAmounts" :key="amount"
-        class="coin-button"
+        class="coin-action-btn"
         v-on:click="addCoins(amount)"
         :disabled="!canAddCoins(amount)">
           +{{ amount }}
       </button>
     </div>
-    <div class="row">
-      Coins: {{ coins }}
-    </div>
-    <div class="row">
+    <div class="coin-action-buttons">
       <button
         v-for="amount in removeCoinAmounts" :key="amount"
-        class="coin-button"
+        class="coin-action-btn"
         v-on:click="removeCoins(amount)"
         :disabled="!canRemoveCoins(amount)">
           -{{ amount }}
       </button>
     </div>
   </div>
-  <!-- <div class="game-actions-coins">
-    <div class="buttons-container">
-      TODO: add class (dynamic?) for disabled buttons
-      <button
-        v-for="amount in addCoinAmounts" :key="amount"
-        class="coin-button"
-        v-on:click="addCoins(amount)"
-        :disabled="!canAddCoins(amount)">
-          +{{ amount }}
-      </button>
-    </div>
-    <div class="coin-counter">
-      Coins: {{ coins }}
-    </div>
-    <div class="buttons-container">
-      <button
-        v-for="amount in removeCoinAmounts" :key="amount"
-        class="coin-button"
-        v-on:click="removeCoins(amount)"
-        :disabled="!canRemoveCoins(amount)">
-          -{{ amount }}
-      </button>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -59,7 +34,6 @@ export default {
     };
   },
   methods: {
-    // TODO: use these functions to disable buttons appropiately
     // can't add coins if you have >= 10
     canAddCoins(num) {
       return (this.coins < 10);
@@ -88,44 +62,39 @@ export default {
 </script>
 
 <style scoped>
-/*.game-actions-coins, .buttons-container, {
-  display: flex;
-}
 .game-actions-coins {
-  background-color: cyan;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-.buttons-container {
-  flex: 1;
-  justify-content: center;
-}
-.coin-counter {
-  flex: 1;
-}
-.coin-button {
-  margin: 0.75em;
-}
-button:disabled {
-  background-color: red;
-}*/
-.game-actions-coins {
-  background-color: cyan;
   display: flex;
   flex-direction: column;
+}
+
+.coin-action-text, .coin-action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.coin-action-text {
+  height: 26%;
+  justify-content: center;
+}
+.coin-action-buttons {
+  height: 37%;
   justify-content: space-evenly;
 }
-/*FIXME: more descriptive name?*/
-.row {
-  display: flex;
-  justify-content: center;
-  /*flex: 1;*/
+
+/*TODO: put this elsewhere (copied from HomeMenu.vue and renamed+modified)*/
+.coin-action-btn {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  background-color: #EEEEEE;
+  border: 1.5px solid #BDBDBD;
+  border-radius: 7px;
+
+  height: 10vh;
+  width: 10vw;
 }
-.coin-button {
-  margin: 0.75em;
-}
-/*TODO: don't use button*/
-button:disabled {
-  background-color: red;
+
+.coin-action-btn:disabled {
+  background-color: #ECEFF1;
+  border: 1.5px solid #B0BEC5;
 }
 </style>

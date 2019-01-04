@@ -1,10 +1,16 @@
 <template>
   <div class="room-lobby">
-    <!-- TODO: delete this -->
-    Room Lobby with roomIdInt {{ roomIdInt }} and userId {{ userId }}.
-    Number of players: {{ numOfPlayers }}.
-    Room State: {{ roomState }}
-    <button v-on:click="sendStartGame">Start Game</button>
+    <div class="item">
+      <p>Game ID:</p>
+      <h4>{{ roomId }}</h4>
+    </div>
+    <div class="item">
+      <p>Number of Players:</p>
+      <h4>{{ numOfPlayers }}</h4>
+    </div>
+    <div class="item">
+      <button class="menu-btn" v-on:click="sendStartGame">Start Game</button>
+    </div>
   </div>
 </template>
 
@@ -29,7 +35,7 @@ export default {
       }`,
       variables() {
         return {
-          id: this.roomIdInt,
+          id: this.roomId,
         };
       },
       result(res) {
@@ -41,8 +47,7 @@ export default {
   },
   data: function () {
     return {
-      roomIdInt: Number.isInteger(this.roomId) ? this.roomId : parseInt(this.roomId, 10),
-      numOfPlayers: 0,
+      numOfPlayers: null,
       roomState: 1, // 1 is lobby
     };
   },
@@ -58,7 +63,7 @@ export default {
         }`,
         variables: {
           input: {
-            roomKey: this.roomIdInt,
+            roomKey: this.roomId,
           },
         },
       }).catch((error) => {
@@ -82,4 +87,31 @@ export default {
 </script>
 
 <style scoped>
+.room-lobby {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+
+}
+p {
+  margin-bottom: 0.25em;
+}
+h4 {
+  margin-top: 0.25em;
+}
+/*TODO: put menu-btn elsewhere (copied from HomeMenu.vue)*/
+.menu-btn {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  height: 2em;
+  width: 9em;
+  background-color: #EEEEEE;
+  border: 1.5px solid #BDBDBD;
+  border-radius: 7px;
+}
 </style>
