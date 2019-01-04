@@ -3,36 +3,12 @@
     <template v-for="actionInfo in actionsInfo">
       <div class="card-action">
         <button class="card-action-btn" v-on:click="setMode(actionInfo.cardsMode)">
-          {{ actionInfo.text }}
-          <span v-if="cardsMode == actionInfo.cardsMode">
-            {{ actionInfo.adjectiveSuffix }}
-          </span>
+          {{ actionInfo.text }}<span v-if="cardsMode == actionInfo.cardsMode">{{ actionInfo.adjectiveSuffix }}</span>
           <br>
           {{ actionInfo.emoji }}
         </button>
       </div>
     </template>
-    <!-- <div class="card-action">
-      <button class="card-action-btn" v-on:click="setMode('swap')">
-        Swap<span v-if="cardsMode == 'swap'">ping</span>
-        <br>
-        🔄
-      </button>
-    </div>
-    <div class="card-action">
-      <button class="card-action-btn" v-on:click="setMode('kill')">
-        Kill<span v-if="cardsMode == 'kill'">ing</span>
-        <br>
-        🗡️
-      </button>
-    </div>
-    <div class="card-action">
-      <button class="card-action-btn" v-on:click="setMode('reveal')">
-        Reveal<span v-if="cardsMode == 'reveal'">ing</span>
-        <br>
-        💡
-      </button>
-    </div> -->
   </div>
 </template>
 
