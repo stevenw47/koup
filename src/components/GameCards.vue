@@ -31,9 +31,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 .card {
-  background-color: pink;
   flex: 1 1 50%;
 }
 </style>
