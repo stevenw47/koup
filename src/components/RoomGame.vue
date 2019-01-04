@@ -1,23 +1,19 @@
 <template>
   <div class="room-game">
-    <!-- TODO: delete this -->
-    <!-- Room Game with roomId {{ roomId }} and userId {{ userId }}. -->
-    <div class="row">
-      <div class="col">
-        <GameActions
-          v-bind:coins="coins"
-          v-bind:cardsMode="cardsMode"
-          v-on:set-coins="setCoins"
-          v-on:set-mode="setMode"
-        />
-      </div>
-      <div class="col">
-        <GameCards
-          v-bind:cards="cards"
-          v-bind:cardsMode="cardsMode"
-          v-on:clicked-card="clickedCard"
-        />
-      </div>
+    <div class="game-col">
+      <GameActions
+        v-bind:coins="coins"
+        v-bind:cardsMode="cardsMode"
+        v-on:set-coins="setCoins"
+        v-on:set-mode="setMode"
+      />
+    </div>
+    <div class="game-col">
+      <GameCards
+        v-bind:cards="cards"
+        v-bind:cardsMode="cardsMode"
+        v-on:clicked-card="clickedCard"
+      />
     </div>
   </div>
 </template>
@@ -401,10 +397,10 @@ export default {
 </script>
 
 <style scoped>
-.row {
+.room-game {
   display: flex;
 }
-.col {
+.game-col {
   flex: 1;
 }
 </style>
