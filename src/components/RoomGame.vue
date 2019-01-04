@@ -100,7 +100,7 @@ export default {
         }
       */
       cards: [], // array of cards
-      coins: 0,
+      coins: 2, // start with 2 coins
       // modes are one of ['display', 'swap', 'kill', 'reveal']
       cardsMode: 'display',
       cardsMap: {}, // map from card's dbId to type
