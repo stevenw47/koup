@@ -3,7 +3,7 @@
     <template v-for="actionInfo in actionsInfo">
       <div class="card-action">
         <button class="card-action-btn" v-on:click="setMode(actionInfo.cardsMode)">
-          {{ actionInfo.text }}<span v-if="cardsMode == actionInfo.cardsMode">{{ actionInfo.adjectiveSuffix }}</span>
+          {{ actionInfo.text }}<span v-show="cardsMode == actionInfo.cardsMode">{{ actionInfo.adjectiveSuffix }}</span>
           <br>
           {{ actionInfo.emoji }}
         </button>
