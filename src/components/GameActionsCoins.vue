@@ -1,22 +1,21 @@
 <template>
   <div class="game-actions-coins">
-    <div class="coin-action">
-      <!-- TODO: add class (dynamic?) for disabled buttons -->
-      <h4>Coins: {{ coins }}</h4>
+    <div class="coin-action-text">
+      <h2>Coins: {{ coins }}</h2>
     </div>
-    <div class="coin-action">
+    <div class="coin-action-buttons">
       <button
         v-for="amount in addCoinAmounts" :key="amount"
-        class=".coin-action-btn"
+        class="coin-action-btn"
         v-on:click="addCoins(amount)"
         :disabled="!canAddCoins(amount)">
           +{{ amount }}
       </button>
     </div>
-    <div class="coin-action">
+    <div class="coin-action-buttons">
       <button
         v-for="amount in removeCoinAmounts" :key="amount"
-        class=".coin-action-btn"
+        class="coin-action-btn"
         v-on:click="removeCoins(amount)"
         :disabled="!canRemoveCoins(amount)">
           -{{ amount }}
@@ -35,7 +34,6 @@ export default {
     };
   },
   methods: {
-    // TODO: use these functions to disable buttons appropiately
     // can't add coins if you have >= 10
     canAddCoins(num) {
       return (this.coins < 10);
@@ -65,30 +63,38 @@ export default {
 
 <style scoped>
 .game-actions-coins {
-  background-color: cyan;
   display: flex;
   flex-direction: column;
+}
+
+.coin-action-text, .coin-action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.coin-action-text {
+  height: 26%;
+  justify-content: center;
+}
+.coin-action-buttons {
+  height: 37%;
   justify-content: space-evenly;
 }
 
-.coin-action {
-  display: flex;
-  justify-content: center;
-}
-
+/*TODO: put this elsewhere (copied from HomeMenu.vue and renamed+modified)*/
 .coin-action-btn {
-  margin: 0.75em;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  background-color: #EEEEEE;
+  border: 1.5px solid #BDBDBD;
+  border-radius: 7px;
+
+  height: 10vh;
+  width: 10vw;
 }
 
 .coin-action-btn:disabled {
-  background-color: red;
-}
-
-h4 {
-  /*margin: 0;*/
-}
-/*TODO: don't use button*/
-button:disabled {
-  background-color: red;
+  background-color: #ECEFF1;
+  border: 1.5px solid #B0BEC5;
 }
 </style>

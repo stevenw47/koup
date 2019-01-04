@@ -45,6 +45,14 @@ export default {
   justify-content: space-evenly;
 }
 
+.card-action {
+  width: 16vw;
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*TODO: put this elsewhere (copied from HomeMenu.vue and renamed+modified)*/
 .card-action-btn {
   font-family: 'Ubuntu', sans-serif;
@@ -55,13 +63,5 @@ export default {
 
   height: 80%;
   width: 80%;
-}
-
-.card-action {
-  width: 16vw;
-  flex: 1 1 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>
