@@ -1,7 +1,7 @@
 <template>
   <div class="game-actions-coins">
     <div class="coin-action-text">
-      <h2>Coins: {{ coins }}</h2>
+      <h2>💰: {{ coins }}</h2>
     </div>
     <div class="coin-action-buttons">
       <button

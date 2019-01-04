@@ -1,28 +1,24 @@
 <template>
   <div class="game-actions-cards">
-    <!-- FIXME: use loop? -->
-    <!-- <button class="action-btn" v-on:click="setMode('swap')">
-      Swap<span v-if="cardsMode == 'swap'">ing</span>
-    </button>
-    <button class="action-btn" v-on:click="setMode('kill')">
-      Kill<span v-if="cardsMode == 'kill'">ing</span>
-    </button>
-    <button class="action-btn" v-on:click="setMode('reveal')">
-      Reveal<span v-if="cardsMode == 'reveal'">ing</span>
-    </button> -->
     <div class="card-action">
       <button class="card-action-btn" v-on:click="setMode('swap')">
-        Swap<span v-if="cardsMode == 'swap'">ing</span>
+        Swap<span v-if="cardsMode == 'swap'">ping</span>
+        <br>
+        🔄
       </button>
     </div>
     <div class="card-action">
       <button class="card-action-btn" v-on:click="setMode('kill')">
         Kill<span v-if="cardsMode == 'kill'">ing</span>
+        <br>
+        🗡️
       </button>
     </div>
     <div class="card-action">
       <button class="card-action-btn" v-on:click="setMode('reveal')">
         Reveal<span v-if="cardsMode == 'reveal'">ing</span>
+        <br>
+        💡
       </button>
     </div>
   </div>
@@ -31,6 +27,13 @@
 <script>
 export default {
   props: ['cardsMode'],
+  data: function () {
+    return {
+      actionsInfo: {
+        
+      },
+    };
+  },
   methods: {
     setMode(newMode) {
       this.$emit('set-mode', newMode);

@@ -30,8 +30,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
 }
 .card {
   flex: 1 1 50%;
