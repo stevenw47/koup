@@ -1,6 +1,18 @@
 <template>
   <div class="game-actions-cards">
-    <div class="card-action">
+    <template v-for="actionInfo in actionsInfo">
+      <div class="card-action">
+        <button class="card-action-btn" v-on:click="setMode(actionInfo.cardsMode)">
+          {{ actionInfo.text }}
+          <span v-if="cardsMode == actionInfo.cardsMode">
+            {{ actionInfo.adjectiveSuffix }}
+          </span>
+          <br>
+          {{ actionInfo.emoji }}
+        </button>
+      </div>
+    </template>
+    <!-- <div class="card-action">
       <button class="card-action-btn" v-on:click="setMode('swap')">
         Swap<span v-if="cardsMode == 'swap'">ping</span>
         <br>
@@ -20,7 +32,7 @@
         <br>
         💡
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -30,7 +42,24 @@ export default {
   data: function () {
     return {
       actionsInfo: {
-        
+        Swap: {
+          cardsMode: 'swap',
+          text: 'Swap',
+          adjectiveSuffix: 'ping',
+          emoji: '🔄',
+        },
+        Kill: {
+          cardsMode: 'kill',
+          text: 'Kill',
+          adjectiveSuffix: 'ing',
+          emoji: '🗡️',
+        },
+        Reveal: {
+          cardsMode: 'reveal',
+          text: 'Reveal',
+          adjectiveSuffix: 'ing',
+          emoji: '💡',
+        },
       },
     };
   },
