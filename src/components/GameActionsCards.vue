@@ -3,7 +3,7 @@
     <template v-for="actionInfo in actionsInfo">
       <div class="card-action">
         <button class="card-action-btn" v-on:click="setMode(actionInfo.cardsMode)">
-          {{ actionInfo.text }}<span v-if="cardsMode == actionInfo.cardsMode">{{ actionInfo.adjectiveSuffix }}</span>
+          {{ actionInfo.text }}<span v-show="cardsMode == actionInfo.cardsMode">{{ actionInfo.adjectiveSuffix }}</span>
           <br>
           {{ actionInfo.emoji }}
         </button>
@@ -64,7 +64,7 @@ export default {
 /*TODO: put this elsewhere (copied from HomeMenu.vue and renamed+modified)*/
 .card-action-btn {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  font-size: 1.55vw;
   background-color: #EEEEEE;
   border: 1.5px solid #BDBDBD;
   border-radius: 7px;

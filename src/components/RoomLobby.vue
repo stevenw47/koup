@@ -107,7 +107,7 @@ h4 {
 /*TODO: put menu-btn elsewhere (copied from HomeMenu.vue)*/
 .menu-btn {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  font-size: 1.55vw;
   height: 2em;
   width: 9em;
   background-color: #EEEEEE;

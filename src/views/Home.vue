@@ -33,7 +33,8 @@ export default {
 }
 
 .title {
-  font-size: 50px;
+  /*font-size: 50px;*/
+  font-size: 6vw;
   margin: 0;
 }
 

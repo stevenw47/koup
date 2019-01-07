@@ -4,8 +4,8 @@
       <p v-if="!card.hidden || !card.alive">{{ card.type }}</p>
       <p v-else>HIDDEN</p>
       <p>👑</p>
-      <p v-if="card.selected">SELECTED</p>
-      <p v-if="!card.alive">DEAD</p>
+      <p v-show="card.selected">SELECTED</p>
+      <p v-show="!card.alive">DEAD</p>
     </div>
   </div>
 </template>

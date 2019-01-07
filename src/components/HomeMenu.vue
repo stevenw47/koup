@@ -13,6 +13,11 @@
     <template v-else>
       <div class="join-container">
         <div class="item">
+          <button class="menu-btn-small" v-on:click="unTryJoinGame">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+        <div class="item">
           <input class="join-input" placeholder="Game ID" v-model="roomId" v-on:keyup.enter="joinGame" autofocus>
         </div>
         <div class="item">
@@ -87,6 +92,9 @@ export default {
     tryJoinGame() {
       this.showJoinGameInput = true;
     },
+    unTryJoinGame() {
+      this.showJoinGameInput = false;
+    },
   },
 };
 </script>
@@ -115,7 +123,8 @@ export default {
 
 .menu-btn {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  /*font-size: 20px;*/
+  font-size: 1.55vw;
   height: 2em;
   width: 9em;
   background-color: #EEEEEE;
@@ -123,12 +132,28 @@ export default {
   border-radius: 7px;
 }
 
+.menu-btn-small {
+  font-family: 'Ubuntu', sans-serif;
+  /*font-size: 14px;*/
+  font-size: 1.2vw;
+  height: 2em;
+  width: 2.5em;
+  background-color: #EEEEEE;
+  border: 1.5px solid #BDBDBD;
+  border-radius: 7px;
+}
+
 .join-input {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  /*font-size: 20px;*/
+  font-size: 1.55vw;
   height: 2em;
   width: 16em;
   border: 1.5px solid #BDBDBD;
   border-radius: 7px;
+}
+
+p {
+  margin: 0;
 }
 </style>
