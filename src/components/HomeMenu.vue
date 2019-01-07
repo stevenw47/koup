@@ -123,7 +123,8 @@ export default {
 
 .menu-btn {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  /*font-size: 20px;*/
+  font-size: 1.55vw;
   height: 2em;
   width: 9em;
   background-color: #EEEEEE;
@@ -133,7 +134,8 @@ export default {
 
 .menu-btn-small {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
+  /*font-size: 14px;*/
+  font-size: 1.2vw;
   height: 2em;
   width: 2.5em;
   background-color: #EEEEEE;
@@ -143,7 +145,8 @@ export default {
 
 .join-input {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 20px;
+  /*font-size: 20px;*/
+  font-size: 1.55vw;
   height: 2em;
   width: 16em;
   border: 1.5px solid #BDBDBD;
