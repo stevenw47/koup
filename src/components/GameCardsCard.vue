@@ -31,6 +31,7 @@ export default {
 .card-content {
   height: 45vh;
   width: 20vw;
+  font-size: 2vw;
 
   display: flex;
   flex-direction: column;

@@ -74,6 +74,7 @@ export default {
 
 .coin-action-text {
   height: 26%;
+  font-size: 2vw;
   justify-content: center;
 }
 .coin-action-buttons {
@@ -84,7 +85,7 @@ export default {
 /*TODO: put this elsewhere (copied from HomeMenu.vue and renamed+modified)*/
 .coin-action-btn {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 1.55vw;
+  font-size: 1.8vw;
   background-color: #EEEEEE;
   border: 1.5px solid #BDBDBD;
   border-radius: 7px;
