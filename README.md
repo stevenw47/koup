@@ -10,8 +10,8 @@ Koup is *not* designed to be a method of playing Coup online. Rather, it is an a
 
 ## Setup
 ```
-yarn install # Project setup
+yarn install   # Project setup
 yarn run serve # Compiles and hot-reloads for development
 yarn run build # Compiles and minifies for production
-yarn run lint # Lints and fixes files
+yarn run lint  # Lints and fixes files
 ```
